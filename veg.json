@@ -1,0 +1,7 @@
+{ "_id" : "wpnvDQKgFbcT2JSuf", "desc" : "Trees with grass underneath.", "name" : "Savanna", "thumb" : "thumb_sv.png" }
+{ "_id" : "oHN3DSPPx9WCGtJEr", "desc" : "Cleared, roads, buildings.", "name" : "Urban", "thumb" : "thumb_ur.png" }
+{ "_id" : "aMYizg6kHvKhgAuR5", "desc" : "Can't identify, clouds.", "name" : "Unknown", "thumb" : "thumb_uk.png" }
+{ "_id" : "73Gex2j6Xdu8ufoJG", "desc" : "Cleared, roads, farms, isolated trees.", "name" : "Rural/Cleared", "thumb" : "thumb_ru.png" }
+{ "_id" : "wB8Rfjq334KnT9gyi", "desc" : "Dense unbroken canopy of trees.", "name" : "Rainforest", "thumb" : "thumb_rf.png" }
+{ "_id" : "7ixqjWyRJ5AoB3EbM", "desc" : "Ocean, sand, river, wetland, rock or other.", "name" : "Other", "thumb" : "thumb_ot.png" }
+
