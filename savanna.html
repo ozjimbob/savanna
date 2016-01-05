@@ -1,0 +1,23 @@
+<head>
+  <title>savanna</title>
+</head>
+
+<body>
+  <h1>Savanna classification.</h1>
+<div id="loginButtons">{{> loginButtons}}</div>
+{{> sideButtons}}
+{{> satmap}}
+</body>
+
+<template name="satmap">
+<div id="map"></div>
+</template>
+
+<template name="sideButtons">
+<div id="sideButtonBar">
+{{#each vegTypes}}
+<div class="button"><img src="{{thumb}}" /><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div>
+{{/each}}
+</div>
+</template>
+

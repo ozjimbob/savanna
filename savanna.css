@@ -1,0 +1,38 @@
+/* CSS declarations go here */
+#map{border: 1px black solid; 
+    width: 70%;
+height: 500px;
+float:right;
+}
+
+#loginButtons{
+	width:100%;
+	background-color: #ccffcc;
+}
+
+#sideButtonBar{
+	float:left;
+	width:300px;
+	border-right: 2px black solid;
+	display:inline;
+}
+
+.button{
+	border-radius: 4px;
+	width: 126px;
+	height: 170px;
+	border: 1px solid black;
+	background-color: #dddddd;
+    text-align: center;
+    display: inline-table;
+    margin: 2px 2px 2px 2px;
+    padding: 2px 2px 2px 2px;
+}
+
+.smtxt{
+	font-size: small;
+}
+
+.lgtxt{
+	font-weight: bold;
+}
