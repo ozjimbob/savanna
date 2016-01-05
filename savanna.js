@@ -1,7 +1,5 @@
 VegList = new Mongo.Collection('Veg');
 
-
-
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('lat', -42.0);
@@ -40,7 +38,7 @@ Template.satmap.helpers({
 
   Template.satmap.rendered = function () {
      map = L.map('map').setView([Session.get('lat'), Session.get('lon')], 5);
-    
+
    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 }).addTo(map);
@@ -57,7 +55,7 @@ Template.satmap.helpers({
 	};
 
     map.on('dragend', updateSession);
-    
+
     map.circ = new L.circle(L.latLng(0,0), 200,{
     color: 'red',
     fillColor: '#f03',
@@ -77,6 +75,12 @@ L.Icon.Default.imagePath = 'packages/leaflet/images'
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+    VegList.remove({});
+    VegList.insert({"desc" : "Trees with grass underneath.", "name" : "Savanna", "thumb" : "thumb_sv.png" });
+    VegList.insert({"desc" : "Cleared, roads, buildings.", "name" : "Urban", "thumb" : "thumb_ur.png" });
+    VegList.insert({"desc" : "Can't identify, clouds.", "name" : "Unknown", "thumb" : "thumb_uk.png" });
+    VegList.insert({"desc" : "Cleared, roads, farms, isolated trees.", "name" : "Rural/Cleared", "thumb" : "thumb_ru.png" });
+    VegList.insert({"desc" : "Dense unbroken canopy of trees.", "name" : "Rainforest", "thumb" : "thumb_rf.png" });
+    VegList.insert({"desc" : "Ocean, sand, river, wetland, rock or other.", "name" : "Other", "thumb" : "thumb_ot.png" });
   });
 }
