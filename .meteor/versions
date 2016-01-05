@@ -27,6 +27,7 @@ ecmascript-runtime@0.2.6
 ejson@1.0.7
 fastclick@1.0.7
 geojson-utils@1.0.4
+harrison:papa-parse@1.1.1
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5

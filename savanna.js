@@ -69,18 +69,37 @@ Template.satmap.helpers({
   //  });
 };
 
+
 L.Icon.Default.imagePath = 'packages/leaflet/images'
 
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    vegdata = Assets.getText('veg.csv');
+    var parseddata;
+
+    Papa.parse(vegdata,{
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        parseddata = results;
+      }});
+    var pd = parseddata.data
+
     VegList.remove({});
-    VegList.insert({"desc" : "Trees with grass underneath.", "name" : "Savanna", "thumb" : "thumb_sv.png" });
-    VegList.insert({"desc" : "Cleared, roads, buildings.", "name" : "Urban", "thumb" : "thumb_ur.png" });
-    VegList.insert({"desc" : "Can't identify, clouds.", "name" : "Unknown", "thumb" : "thumb_uk.png" });
-    VegList.insert({"desc" : "Cleared, roads, farms, isolated trees.", "name" : "Rural/Cleared", "thumb" : "thumb_ru.png" });
-    VegList.insert({"desc" : "Dense unbroken canopy of trees.", "name" : "Rainforest", "thumb" : "thumb_rf.png" });
-    VegList.insert({"desc" : "Ocean, sand, river, wetland, rock or other.", "name" : "Other", "thumb" : "thumb_ot.png" });
+
+    for(var i=0;i<pd.length;i++){
+      var tpd=pd[i];
+      VegList.insert({"desc" : tpd.desc, "name" : tpd.name, "thumb" : tpd.thumb,"code" : tpd.code });
+
+    }
+
+//  VegList.insert({"desc" : "Cleared, roads, buildings.", "name" : "Urban", "thumb" : "thumb_ur.png" });
+//  VegList.insert({"desc" : "Can't identify, clouds.", "name" : "Unknown", "thumb" : "thumb_uk.png" });
+//    VegList.insert({"desc" : "Cleared, roads, farms, isolated trees.", "name" : "Rural/Cleared", "thumb" : "thumb_ru.png" });
+//    VegList.insert({"desc" : "Dense unbroken canopy of trees.", "name" : "Rainforest", "thumb" : "thumb_rf.png" });
+//    VegList.insert({"desc" : "Ocean, sand, river, wetland, rock or other.", "name" : "Other", "thumb" : "thumb_ot.png" });
   });
 }
