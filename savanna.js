@@ -2,8 +2,8 @@ VegList = new Mongo.Collection('Veg');
 
 if (Meteor.isClient) {
   // counter starts at 0
-  Session.setDefault('lat', -42.0);
-  Session.setDefault('lon', 145.0);
+  Session.setDefault('lat', -13.8295);
+  Session.setDefault('lon', 130.23924);
 
 Template.sideButtons.helpers({
   'vegTypes':function(){
@@ -37,7 +37,7 @@ Template.satmap.helpers({
 	}});
 
   Template.satmap.rendered = function () {
-     map = L.map('map').setView([Session.get('lat'), Session.get('lon')], 5);
+     map = L.map('map',{zoomControl:false, zoom:16}).setView([Session.get('lat'), Session.get('lon')],16);
 
    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -56,17 +56,12 @@ Template.satmap.helpers({
 
     map.on('dragend', updateSession);
 
-    map.circ = new L.circle(L.latLng(0,0), 200,{
+    map.circ = new L.circle(L.latLng([Session.get('lat'), Session.get('lon')]), 200,{
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.0
     }).addTo(map);
-  //  Sites.find().fetch().forEach(function(site) {
-  //      var icon = new MapIcon({iconUrl: 'img/map/map-icon-undefined.png'});
-  //      var marker = L.marker([site.location.coords[0], site.location.coords[1]], {icon: icon});
-  //      marker.bindPopup('<strong>' + site.name + '</strong><br />' + site.location.address);
-  //      marker.addTo(map);
-  //  });
+
 };
 
 
