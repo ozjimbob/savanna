@@ -15,9 +15,12 @@
 
 <template name="sideButtons">
 <div id="sideButtonBar">
+  {{#if currentUser}}
 {{#each vegTypes}}
 <div class="button"><img src="{{thumb}}" /><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div>
 {{/each}}
+  {{else}}
+  <div class="button">Please login with Facebook to classify images</div>
+  {{/if}}
 </div>
 </template>
-

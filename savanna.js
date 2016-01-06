@@ -1,3 +1,6 @@
+
+
+
 VegList = new Mongo.Collection('Veg');
 
 if (Meteor.isClient) {
@@ -91,10 +94,25 @@ if (Meteor.isServer) {
 
     }
 
-//  VegList.insert({"desc" : "Cleared, roads, buildings.", "name" : "Urban", "thumb" : "thumb_ur.png" });
-//  VegList.insert({"desc" : "Can't identify, clouds.", "name" : "Unknown", "thumb" : "thumb_uk.png" });
-//    VegList.insert({"desc" : "Cleared, roads, farms, isolated trees.", "name" : "Rural/Cleared", "thumb" : "thumb_ru.png" });
-//    VegList.insert({"desc" : "Dense unbroken canopy of trees.", "name" : "Rainforest", "thumb" : "thumb_rf.png" });
-//    VegList.insert({"desc" : "Ocean, sand, river, wetland, rock or other.", "name" : "Other", "thumb" : "thumb_ot.png" });
+    configureFacebook = function(config) {
+        // first, remove configuration entry in case service is already configured
+        ServiceConfiguration.configurations.remove({
+            service: "facebook"
+        });
+
+       ServiceConfiguration.configurations.insert({
+            service: "facebook",
+            appId: config.clientId,
+            secret: config.secret
+        });
+    };
+
+    // set the settings object with meteor --settings private/settings-local.json
+    var facebookConfig = Meteor.settings.facebook;
+    if(facebookConfig) {
+        console.log('Got settings for facebook', facebookConfig)
+        configureFacebook(facebookConfig);
+    }
+
   });
 }
