@@ -1,16 +1,21 @@
 <head>
-  <title>savanna</title>
+  <title>SavannaClick</title>
+  <link href='https://fonts.googleapis.com/css?family=Martel+Sans:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-  <h1>Savanna classification.</h1>
-<div id="loginButtons">{{> loginButtons}}</div>
+  <div id="header"><img src="icon_2.png" style="vertical-align:middle" />SavannaClick.</div>
+<div id="loginButtons">{{> loginButtons}} | Help classify the savanna ecosystems of the world | About</div>
 {{> sideButtons}}
 {{> satmap}}
 </body>
 
 <template name="satmap">
 <div id="map"></div>
+<div id="footer">
+<p><b>SavannaClick</b> has been developed by the Environmental Change Biology lab in the School of Biological Sciences at the University of Tasmania. Log in using the Facebook login button at the top to begin helping us classify the savanna ecosystems of the world, so better understand their association with raiinforest systems, and to help tune global vegetation models.</p>
+<p>Developed by <a href="http://www.utas.edu.au/profiles/staff/plant-science/grant-williamson">Dr Grant Williamson</a></p>
+</div>
 </template>
 
 <template name="sideButtons">
