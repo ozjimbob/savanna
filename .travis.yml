@@ -7,3 +7,4 @@ services:
   - mongodb
 env:
   - LAIKA_OPTIONS="-t 5000"
+sudo: required
