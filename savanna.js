@@ -2,11 +2,21 @@
 
 
 VegList = new Mongo.Collection('Veg');
+points_5k = new Mongo.Collection('p5k');
 
 if (Meteor.isClient) {
   // counter starts at 0
-  Session.setDefault('lat', -13.8295);
-  Session.setDefault('lon', 130.23924);
+
+  Meteor.call("getLoc",function(error,get_coords){
+    if(error){
+      console.log("Error occuring:",error)
+    }else{
+    Session.set('id',get_coords.id);
+    Session.set('lat', get_coords.lat);
+    Session.set('lon', get_coords.lon);
+   }
+  });
+
 
 Template.sideButtons.helpers({
   'vegTypes':function(){
@@ -17,20 +27,35 @@ Template.sideButtons.helpers({
 Template.sideButtons.events({
   'click .button':function(e){
 
-    console.log("You clicked" + this.name)
+    console.log("You clicked" + this.name);
    // $(this).fadeOut( 400 ).delay(200).fadeIn(400);
    //var self=this;
    $(e.currentTarget).animate({ backgroundColor: "#FFFF00" },1).delay(300).animate({ backgroundColor: "#EFEAEA" }, 300);
    //.delay(100).fadeIn(100);
     map.removeLayer(map.circ);
-    var newLat=(Math.random()*40)-20
-    var newLng=(Math.random()*360)-180
-    map.setView(L.latLng(newLat,newLng),16)
-    map.circ = new L.circle(L.latLng(newLat,newLng), 200,{
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.0
-    }).addTo(map);
+
+    Meteor.call("getLoc",function(error,get_coords){
+      if(error){
+        console.log("Error occuring:",error)
+      }else{
+        console.log(get_coords.id)
+      Session.set('id',get_coords.id);
+      Session.set('lat', get_coords.lat);
+      Session.set('lon', get_coords.lon);
+      console.log(Session.get('id'))
+      var newLat=Session.get('lat');
+      var newLng=Session.get('lon');
+      console.log("moving map")
+      map.setView(L.latLng(newLat,newLng),16);
+      map.circ = new L.circle(L.latLng(newLat,newLng), 200,{
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.0
+      }).addTo(map);
+    }
+    });
+
+
   }
 });
 
@@ -73,7 +98,38 @@ L.Icon.Default.imagePath = 'packages/leaflet/images'
 }
 
 if (Meteor.isServer) {
+
+  Meteor.publish("Veg",function(){
+    return VegList.find();
+  });
+
+
+  if(points_5k.find().count()===0){
+  console.log("defining csv")
+    pointcsv = Assets.getText('base_points_5k.csv');
+    var parseddata2;
+    Papa.parse(pointcsv,{
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        parseddata2 = results;
+      }});
+
+     //points_5k.remove({});
+
+    var pd = parseddata2.data
+    console.log(pd.length)
+
+        for(var i=0;i<pd.length;i++){
+          var tpd=pd[i];
+          points_5k.insert({"id" : tpd.Id, "lon" : tpd.lon, "lat" : tpd.lat });
+        }
+  }
+
   Meteor.startup(function () {
+
+    // Load in vegetation categories - always do this
     vegdata = Assets.getText('veg.csv');
     var parseddata;
 
@@ -84,15 +140,17 @@ if (Meteor.isServer) {
       complete: function(results) {
         parseddata = results;
       }});
-    var pd = parseddata.data
+    var pd = parseddata.data;
 
     VegList.remove({});
 
     for(var i=0;i<pd.length;i++){
       var tpd=pd[i];
       VegList.insert({"desc" : tpd.desc, "name" : tpd.name, "thumb" : tpd.thumb,"code" : tpd.code });
-
     }
+
+    // load in 5k grid points, if they don't exist yet
+
 
     configureFacebook = function(config) {
         // first, remove configuration entry in case service is already configured
@@ -115,4 +173,21 @@ if (Meteor.isServer) {
     }
 
   });
+console.log("Loading array");
+var Parray = points_5k.find().fetch();
+console.log("array loaded");
+
+  Meteor.methods({
+    getLoc: function(){
+      console.log("returning points");
+      var randomIndex = Math.floor( Math.random() * Parray.length );
+      var element = Parray[randomIndex];
+      console.log("here's the point");
+      return(element)
+    }
+  });
+};
+
+if(Meteor.isClient){
+  Meteor.subscribe("Veg");
 }
