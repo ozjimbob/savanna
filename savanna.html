@@ -5,9 +5,10 @@
 
 <body>
   <div id="header"><img src="icon_2.png" style="vertical-align:middle" />SavannaClick.</div>
-<div id="loginButtons">{{> loginButtons}} | Help classify the savanna ecosystems of the world | About</div>
+<div id="loginButtons">{{> loginButtons}} | Help classify the savanna ecosystems of the world | <a href="#" class="basic">About</a></div>
 {{> sideButtons}}
 {{> satmap}}
+{{> about }}
 </body>
 
 <template name="satmap">
@@ -28,4 +29,15 @@
   <div class="button">Please login with Facebook to classify images</div>
   {{/if}}
 </div>
+</template>
+
+<template name="about">
+  <div id="basic-modal-content">
+    <h3>Basic Modal Dialog</h3>
+			<p>For this demo, SimpleModal is using this "hidden" data for its content. You can also populate the modal dialog with an AJAX response, standard HTML or DOM element(s).</p>
+      <a href="#" class="basicclose">Close Window</a>.
+  </div>
+  <div style='display:none'>
+			<img src='x.png' alt='' />
+	</div>
 </template>

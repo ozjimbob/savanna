@@ -103,6 +103,27 @@ console.log("defining tile layer");
     fillOpacity: 0.0
     }).addTo(map);
 };
+
+
+jQuery(function ($) {
+	// Load dialog on page load
+	//$('#basic-modal-content').modal();
+
+	// Load dialog on click
+	$('.basic').click(function (e) {
+		$('#basic-modal-content').toggle();
+
+    console.log("show");
+		return false;
+	});
+
+  $('.basicclose').click(function (e) {
+    $('#basic-modal-content').hide();
+    console.log("hide");
+    return false;
+  });
+});
+
 };
 
 //    updateSession=function(e){
