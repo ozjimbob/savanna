@@ -1,14 +1,16 @@
 <head>
   <title>SavannaClick</title>
   <link href='https://fonts.googleapis.com/css?family=Martel+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="Bing.js"></script>
 </head>
 
 <body>
   <div id="header"><img src="icon_2.png" style="vertical-align:middle" />SavannaClick.</div>
-<div id="loginButtons">{{> loginButtons}} | Help classify the savanna ecosystems of the world | <a href="#" class="basic">About</a></div>
+<div id="loginButtons">{{> loginButtons}} | Help classify the savanna ecosystems of the world | <a href="#" class="basic">About</a> | <a href="#" class="ident">Identification Guide</a></div>
 {{> sideButtons}}
 {{> satmap}}
 {{> about }}
+{{> identification }}
 </body>
 
 <template name="satmap">
@@ -16,6 +18,7 @@
 <div id="footer">
 <p><b>SavannaClick</b> has been developed by the Environmental Change Biology lab in the School of Biological Sciences at the University of Tasmania. Log in using the Facebook login button at the top to begin helping us classify the savanna ecosystems of the world, so better understand their association with raiinforest systems, and to help tune global vegetation models.</p>
 <p>Developed by <a href="http://www.utas.edu.au/profiles/staff/plant-science/grant-williamson">Dr Grant Williamson</a></p>
+<img src="UTAS_colour_domestic.jpg" height="80"/>
 </div>
 </template>
 
@@ -31,13 +34,18 @@
 </div>
 </template>
 
-<template name="about">
+<template name="identification">
   <div id="basic-modal-content">
     <h3>Basic Modal Dialog</h3>
 			<p>For this demo, SimpleModal is using this "hidden" data for its content. You can also populate the modal dialog with an AJAX response, standard HTML or DOM element(s).</p>
       <a href="#" class="basicclose">Close Window</a>.
   </div>
-  <div style='display:none'>
-			<img src='x.png' alt='' />
-	</div>
+</template>
+
+<template name="about">
+  <div id="ident-modal">
+    <h3>Identification Guide</h3>
+			<p>For this demo, SimpleModal is using this "hidden" data for its content. You can also populate the modal dialog with an AJAX response, standard HTML or DOM element(s).</p>
+      <a href="#" class="identclose">Close Window</a>.
+  </div>
 </template>

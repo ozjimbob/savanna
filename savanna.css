@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 body{font-family: 'Martel Sans', sans-serif;
-background-color:#efddba;
+background-color:#ffffff;
 }
 
 #map{border: 1px black solid;
@@ -11,7 +11,7 @@ float:left;
 
 #loginButtons{
 	width:100%;
-	background-color: #c68d21;
+	background-color: #e32213;
   padding-left:10px;
 }
 
@@ -32,6 +32,13 @@ float:left;
 border: 1px solid #000;
 background-color: #FEE;
 overflow: scroll;}
+
+#ident-modal {display:none;position:absolute; margin-left: auto; margin-right: auto; width:90%; height: 500px;
+  float:right;
+border: 1px solid #000;
+background-color: #FEE;
+overflow: scroll;}
+
 
 #footer{
   width:70%;

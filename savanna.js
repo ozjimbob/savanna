@@ -6,6 +6,7 @@ points_5k = new Mongo.Collection('p5k');
 ClassPoints = new Mongo.Collection("Class5k");
 
 if (Meteor.isClient) {
+
   // counter starts at 0
   Meteor.subscribe("Veg")
   Session.setDefault('id',0);
@@ -82,9 +83,22 @@ if (Meteor.isClient) {
      map = L.map('map',{zoomControl:false, zoom:16}).setView([0,0],16);
   // map = L.map('map',{zoomControl:false, zoom:16}).setView([Session.get('lat'), Session.get('lon')],16);
 console.log("defining tile layer");
-   L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+
+   esri=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-}).addTo(map);
+});
+
+tbing= L.bingLayer('AiIqYapp0UDlHpnwavNbYBdRibOII3AJWMngxVFHvuTZVywVqQoCJFOplpJyrSZC');
+
+esri.addTo(map);
+//tbing.addTo(map);
+
+var baseMaps = {
+    "ESRI": esri,
+    "Bing": tbing
+};
+L.control.layers(baseMaps,{},{collapsed:false}).addTo(map);
+L.control.scale().addTo(map);
 
     var MapIcon = L.Icon.extend({
         options: {
@@ -122,6 +136,20 @@ jQuery(function ($) {
     console.log("hide");
     return false;
   });
+
+// Load dialog on click
+$('.ident').click(function (e) {
+  $('#ident-modal').toggle();
+
+  console.log("show");
+  return false;
+});
+
+$('.identclose').click(function (e) {
+  $('#ident-modal').hide();
+  console.log("hide");
+  return false;
+});
 });
 
 };
