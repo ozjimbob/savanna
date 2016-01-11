@@ -3,70 +3,85 @@
 
 VegList = new Mongo.Collection('Veg');
 points_5k = new Mongo.Collection('p5k');
+ClassPoints = new Mongo.Collection("Class5k");
 
 if (Meteor.isClient) {
   // counter starts at 0
+  Meteor.subscribe("Veg")
+  Session.setDefault('id',0);
+  Session.setDefault('lat', 0);
+  Session.setDefault('lon', 40);
 
-  Meteor.call("getLoc",function(error,get_coords){
-    if(error){
-      console.log("Error occuring:",error)
-    }else{
-    Session.set('id',get_coords.id);
-    Session.set('lat', get_coords.lat);
-    Session.set('lon', get_coords.lon);
-   }
+  Template.sideButtons.helpers({
+    'vegTypes':function(){
+      return VegList.find();
+    }
+  });
+
+  Template.sideButtons.events({
+    'click .button':function(e){
+
+      console.log("You clicked" + this.name);
+      console.log("logging");
+      Meteor.call("insertClass",Session.get("id"),Session.get("lat"),Session.get("lon"),this.code);
+      console.log("animating");
+     // $(this).fadeOut( 400 ).delay(200).fadeIn(400);
+     //var self=this;
+     $(e.currentTarget).animate({ backgroundColor: "#FFFF00" },1).delay(300).animate({ backgroundColor: "#EFEAEA" }, 300);
+     //.delay(100).fadeIn(100);
+     console.log("removing layer");
+      map.removeLayer(map.circ);
+     console.log("calling meteor");
+      Meteor.call("getLoc",function(error,get_coords){
+        if(error){
+          console.log("Error occuring:",error)
+        }else{
+          console.log(get_coords.id)
+        Session.set('id',get_coords.id);
+        Session.set('lat', get_coords.lat);
+        Session.set('lon', get_coords.lon);
+        console.log(Session.get('id'))
+        var newLat=Session.get('lat');
+        var newLng=Session.get('lon');
+        console.log("moving map")
+        map.setView(L.latLng(newLat,newLng),16);
+        map.circ = new L.circle(L.latLng(newLat,newLng), 200,{
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.0
+        }).addTo(map);
+      }
+      });
+
+
+    }
   });
 
 
-Template.sideButtons.helpers({
-  'vegTypes':function(){
-    return VegList.find();
-  }
-});
-
-Template.sideButtons.events({
-  'click .button':function(e){
-
-    console.log("You clicked" + this.name);
-   // $(this).fadeOut( 400 ).delay(200).fadeIn(400);
-   //var self=this;
-   $(e.currentTarget).animate({ backgroundColor: "#FFFF00" },1).delay(300).animate({ backgroundColor: "#EFEAEA" }, 300);
-   //.delay(100).fadeIn(100);
-    map.removeLayer(map.circ);
-
-    Meteor.call("getLoc",function(error,get_coords){
-      if(error){
-        console.log("Error occuring:",error)
-      }else{
-        console.log(get_coords.id)
-      Session.set('id',get_coords.id);
-      Session.set('lat', get_coords.lat);
-      Session.set('lon', get_coords.lon);
-      console.log(Session.get('id'))
-      var newLat=Session.get('lat');
-      var newLng=Session.get('lon');
-      console.log("moving map")
-      map.setView(L.latLng(newLat,newLng),16);
-      map.circ = new L.circle(L.latLng(newLat,newLng), 200,{
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.0
-      }).addTo(map);
-    }
-    });
 
 
-  }
-});
-
-Template.satmap.helpers({
-	'coords':function(){
-		return (Session.get('lat') + " " + Session.get('lon'));
-	}});
+//Template.satmap.helpers({
+//	'coords':function(){
+//		return (Session.get('lat') + " " + Session.get('lon'));
+//	}});
 
   Template.satmap.rendered = function () {
-     map = L.map('map',{zoomControl:false, zoom:16}).setView([Session.get('lat'), Session.get('lon')],16);
+  console.log("getting initial points");
 
+      Meteor.call("getLoc",function(error,get_coords){
+        if(error){
+          console.log("Error occuring:",error);
+        }else{
+        Session.set('id',get_coords.id);
+        Session.set('lat', get_coords.lat);
+        Session.set('lon', get_coords.lon);
+      }});
+
+
+    console.log("creating map");
+     map = L.map('map',{zoomControl:false, zoom:16}).setView([0,0],16);
+  // map = L.map('map',{zoomControl:false, zoom:16}).setView([Session.get('lat'), Session.get('lon')],16);
+console.log("defining tile layer");
    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 }).addTo(map);
@@ -76,26 +91,38 @@ Template.satmap.helpers({
             shadowUrl: 'img/map/shadow.png'
         }
     });
-
-    updateSession=function(e){
-		Session.set('lat',map.getCenter().lat);
-		Session.set('lon',map.getCenter().lng);
-	};
-
-    map.on('dragend', updateSession);
-
-    map.circ = new L.circle(L.latLng([Session.get('lat'), Session.get('lon')]), 200,{
+    L.Icon.Default.imagePath = 'packages/leaflet/images'
+    console.log(Session.get('id'))
+    var newLat=Session.get('lat');
+    var newLng=Session.get('lon');
+    console.log("moving map")
+    map.setView(L.latLng(newLat,newLng),16);
+    map.circ = new L.circle(L.latLng(newLat,newLng), 200,{
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.0
     }).addTo(map);
-
+};
 };
 
+//    updateSession=function(e){
+//		Session.set('lat',map.getCenter().lat);
+//		Session.set('lon',map.getCenter().lng);
+//	};
 
-L.Icon.Default.imagePath = 'packages/leaflet/images'
+//    map.on('dragend', updateSession);
 
-}
+//    map.circ = new L.circle(L.latLng([Session.get('lat'), Session.get('lon')]), 200,{
+//    color: 'red',
+//    fillColor: '#f03',
+//    fillOpacity: 0.0
+//    }).addTo(map);
+
+
+
+
+
+
 
 if (Meteor.isServer) {
 
@@ -184,10 +211,18 @@ console.log("array loaded");
       var element = Parray[randomIndex];
       console.log("here's the point");
       return(element)
+    },
+    insertClass: function(id,lat,lon,code){
+      console.log("classifying point");
+      console.log(code);
+      ClassPoints.insert({
+        id:id,
+        lat:lat,
+        lon:lon,
+        code:code,
+        at: new Date(),
+        user: Meteor.userId()
+      })
     }
   });
 };
-
-if(Meteor.isClient){
-  Meteor.subscribe("Veg");
-}

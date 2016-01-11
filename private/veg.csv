@@ -1,7 +1,7 @@
 desc,name,thumb,code
 "Trees with grass underneath.","Savanna","thumb_sv.png","sv"
 "Cleared, roads, buildings.","Urban","thumb_ur.png","ur"
-"Can't identify, clouds.","Unknown","thumb_uk.png","uk"
+"Can't identify, clouds, missing data or unknown.","Unknown","thumb_uk.png","uk"
 "Cleared, roads, farms, isolated trees.","Rural/Cleared","thumb_ru.png","ru"
 "Dense unbroken canopy of trees.","Rainforest","thumb_rf.png","rf"
-"Ocean, sand, river, wetland, rock or other.","Other","thumb_ot.png","ot"
+"Ocean, sand, river, wetland, rock, desert or other.","Other","thumb_ot.png","ot"
