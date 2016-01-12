@@ -36,16 +36,28 @@
 
 <template name="identification">
   <div id="basic-modal-content">
-    <h3>Basic Modal Dialog</h3>
-			<p>For this demo, SimpleModal is using this "hidden" data for its content. You can also populate the modal dialog with an AJAX response, standard HTML or DOM element(s).</p>
-      <a href="#" class="basicclose">Close Window</a>.
+<h2>About</h2>
+    <a href="#" class="basicclose">Close Window</a>.
   </div>
 </template>
 
 <template name="about">
   <div id="ident-modal">
-    <h3>Identification Guide</h3>
-			<p>For this demo, SimpleModal is using this "hidden" data for its content. You can also populate the modal dialog with an AJAX response, standard HTML or DOM element(s).</p>
-      <a href="#" class="identclose">Close Window</a>.
+    <h2>Classification</h2>
+
+  <p>This we app will show you a random scene selected from within possible savanna biomes around the globe.  Two different satellite data sets are provided (ESRI and Bing), in case the image is missing, cloudy or unidentifiable in one view. Feel free to switch between the two alternate views to get a better understanding of the landscape. The red circle represents the area you are classifying, but looking around the rest of the scene for context (is this part of a farm?  Is this mangrove vegetation next to a river rather than savanna) is useful. Once you have decided on the category of the scene, click one of the six buttons to the left of the map and your classification will be recorded, and the map will move to the next site.</p>
+
+  <h2>Savanna</h2>
+
+  <p>Savanna ecosystems are grassy ecosystems with trees, but where the trees are spaced far enough apart that the canopy does not close and form a continuous cover.  This enables enough light to penetrate the canopy to allow for a continuous herbaceous and grassy layer to persist.  <img src="sav1.png" alt="Photo by Ethel Aardvark CC" align="left"/> Tropical savannas are common in northern Australia, sub-Saharan Africa, south-and central america and south-east asia.  These systems often exist in a matrix with other vegetation types, including dense tropical rainforest.  The boundary between savannas and desert and tree-less grassland is driven primarily by aridity. The boundary between savanna and rainforest vegetation is driven in some cases by water availability, where rainforest exists close to water courses or in sheltered moist valleys, and in other cases by fire.  Landscape fire is common in savannas, due to the high fuel load provided by the grass layer, and savanna trees tend to be fire tolerant and recover quickly after burning. In contrast, rainforest species are highly sensitive to fire and are killed easily, but the closed rainforest canopy prevents a flammable grass layer forming, and maintains a moister environment where fire is rare.  Therefore, tropical savannas and rainforest exist as <i>alternative stable states</i> within the same climate zone.  <img src="sav2.png" alt="Photo by Liv Unni Sodem CC" align="right"/>  Global models of vegetation occurrence and change have difficulty modeling the boundaries of savannas and rainforests because of the small scale of the vegetation matrix, and the difficulty of incorporating realistic fire models.  This project aims to collate a global map of savannas and the surrounding vegetation types to help validate and improve these global dynamic vegetation models.</p>
+
+  <p>In the satellite and aerial imagery you will view, <b>savanna</b> is characterized by the visibility of individual tree canopies, with the understory of grass visible between the tree canopies. Where canopies form a closed unit and no ground or grass is visible between them, the vegetation is most likely <b>rainforest</b> or some other form of closed forest. On the other hand, systems with very widely spaced trees (&lt;5% of the field with trees visible) can still be classified as savanna.  Here, the important determinant is the presence of clear human settlement; if roads, paddocks and buildings are clearly visible, the land may have been cleared and the former presence of savanna is uncertain, so these scenes should be classified into the <b>Rural/Cleared</b> category.</p>
+
+  This table shows some examples of savanna scenes from around the world.
+  <table>
+  <tr><td><img src="sav_tile1.png" /></td><td><a href="https://goo.gl/maps/JwYvTbzeXjr">Australia</a></td></tr>
+  <tr><td><img src="sav_tile2.png" /></td><td><a href="https://goo.gl/maps/MmqudYyRq822">Zimbabwe</a></td></tr>
+  <tr><td><img src="sav_tile3.png" /></td><td><a href="https://goo.gl/maps/BHNHeEApBdF2">Brazil</a></td></tr>
+  </table><a href="#" class="identclose">Close Window</a>.
   </div>
 </template>
