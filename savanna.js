@@ -127,29 +127,34 @@ jQuery(function ($) {
 	$('.basic').click(function (e) {
 		$('#basic-modal-content').toggle();
 
-    console.log("show");
 		return false;
 	});
 
   $('.basicclose').click(function (e) {
     $('#basic-modal-content').hide();
-    console.log("hide");
     return false;
   });
 
 // Load dialog on click
 $('.ident').click(function (e) {
   $('#ident-modal').toggle();
-
-  console.log("show");
   return false;
 });
 
 $('.identclose').click(function (e) {
   $('#ident-modal').hide();
-  console.log("hide");
   return false;
 });
+
+$(document).on('click', function(event) {
+  if (!$(event.target).closest('#ident-modal').length && !$(event.target).closest('#basic-modal-content').length) {
+    $('#ident-modal').hide();
+    $('#basic-modal-content').hide();
+  }
+});
+
+
+
 });
 
 };
