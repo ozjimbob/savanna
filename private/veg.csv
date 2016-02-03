@@ -4,4 +4,4 @@ desc,name,thumb,code
 "Can't identify, clouds, missing data or unknown.","Unknown","thumb_uk.png","uk"
 "Bare, no or few trees.","Arid/Sparse","thumb_ar.png","ar"
 "Dense unbroken canopy of trees.","Rainforest","thumb_rf.png","rf"
-"Ocean, sand, river, wetland, rock, desert or other.","Other","thumb_ot.png","ot"
+"Ocean, sand, river, wetland, or other.","Other","thumb_ot.png","ot"

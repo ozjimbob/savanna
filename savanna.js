@@ -79,10 +79,8 @@ if (Meteor.isClient) {
       }});
 
 
-    console.log("creating map");
      map = L.map('map',{zoomControl:false, zoom:16}).setView([0,0],16);
   // map = L.map('map',{zoomControl:false, zoom:16}).setView([Session.get('lat'), Session.get('lon')],16);
-console.log("defining tile layer");
 
    esri=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -186,7 +184,6 @@ if (Meteor.isServer) {
 
 
   if(points_5k.find().count()===0){
-  console.log("defining csv")
     pointcsv = Assets.getText('base_points_5k.csv');
     var parseddata2;
     Papa.parse(pointcsv,{
