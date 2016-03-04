@@ -28,3 +28,8 @@ node_modules
 
 # Facebook settings
 private/settings-local.json
+
+# MUP
+settings.json
+mup.json
+*.pem
