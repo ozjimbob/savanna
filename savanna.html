@@ -7,9 +7,11 @@
 <body>
   <div id="header"><img src="icon_2.png" style="vertical-align:middle" />SavannaClick.</div>
 <div id="loginButtons">{{> loginButtons}} | Help classify the savanna ecosystems of the world | <a href="#" class="basic">About</a> | <a href="#" class="ident">Identification Guide</a></div>
+<div class="allcontent">
 {{> sideButtons}}
 {{> satmap}}
 {{> about }}
+</div>
 {{> identification }}
 </body>
 
@@ -43,6 +45,8 @@
 
 <template name="about">
   <div id="ident-modal">
+    <a href="#"
+     class="identclose">Close Window</a>.
     <h2>Classification</h2>
 
   <p>This we app will show you a random scene selected from within possible savanna biomes around the globe.  Two different satellite data sets are provided (ESRI and Bing), in case the image is missing, cloudy or unidentifiable in one view. Feel free to switch between the two alternate views to get a better understanding of the landscape. The red circle represents the area you are classifying, but looking around the rest of the scene for context (is this part of a farm?  Is this mangrove vegetation next to a river rather than savanna) is useful. Once you have decided on the category of the scene, click one of the six buttons to the left of the map and your classification will be recorded, and the map will move to the next site.</p>
