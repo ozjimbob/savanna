@@ -148,10 +148,24 @@ $('.identclose').click(function (e) {
   return false;
 });
 
+// Load dialog on click
+$('.stats').click(function (e) {
+  $('#stats-modal').toggle();
+  return false;
+});
+
+$('.statsclose').click(function (e) {
+  $('#stats-modal').hide();
+  return false;
+});
+
+
+
 $(document).on('click', function(event) {
-  if (!$(event.target).closest('#ident-modal').length && !$(event.target).closest('#basic-modal-content').length) {
+  if (!$(event.target).closest('#ident-modal').length && !$(event.target).closest('#basic-modal-content').length && !$(event.target).closest('#stats-modal').length) {
     $('#ident-modal').hide();
     $('#basic-modal-content').hide();
+    $('#stats-modal').hide();
   }
 });
 
