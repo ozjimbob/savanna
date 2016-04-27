@@ -5,6 +5,10 @@ VegList = new Mongo.Collection('Veg');
 points_5k = new Mongo.Collection('p5k');
 ClassPoints = new Mongo.Collection("Class5k");
 
+function random (low, high) {
+    return Math.random() * (high - low) + low;
+};
+
 if (Meteor.isClient) {
 
   // counter starts at 0
@@ -261,6 +265,8 @@ console.log("array loaded");
       var randomIndex = Math.floor( Math.random() * Parray.length );
       var element = Parray[randomIndex];
       console.log("here's the point");
+      element.lat = element.lat + random(-0.02,0.02);
+      element.lon = element.lon + random(-0.02,0.02);
       return(element)
     },
     insertClass: function(id,lat,lon,code){
