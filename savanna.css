@@ -32,7 +32,7 @@ margin-left:310px;
 	display:inline;
 }
 
-#basic-modal-content {display:none;position:absolute; margin-left: 50px; margin-right: 50px;  height: 600px;
+#basic-modal-content {display:none;position:absolute; margin-left: 150px; width:500px;  height: 600px;
 padding:5px;
 border: 1px solid #000;
 background-color: #FEE;
@@ -40,7 +40,7 @@ overflow: scroll;
 z-index:20000;
 box-shadow: 5px 5px 10px #888888;}
 
-#ident-modal {display:none;position:absolute; margin-left: 50px; margin-right: 50px; height: 600px;
+#ident-modal {display:none;position:absolute; margin-left: 150px; width:500px; height: 600px;
   padding: 5px;
 border: 1px solid #000;
 background-color: #c9eadb;
