@@ -40,7 +40,7 @@ overflow: scroll;
 z-index:20000;
 box-shadow: 5px 5px 10px #888888;}
 
-#ident-modal {display:none;position:absolute; margin-left: 150px; width:500px; height: 600px;
+#ident-modal {display:none;position:absolute; margin-left: 250px; width:700px; height: 600px;
   padding: 5px;
 border: 1px solid #000;
 background-color: #c9eadb;
