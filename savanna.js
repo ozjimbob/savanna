@@ -9,10 +9,10 @@ function random (low, high) {
 };
 
 if (Meteor.isClient) {
-  
+
   Template.stats.helpers({
     pcount: function () {
-      return points_5k.find( { user: Meteor.userID() }).count();
+      return points_5k.find( { user: Meteor.userId() }).count();
     }
   });
   // counter starts at 0
