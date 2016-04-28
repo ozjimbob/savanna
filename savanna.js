@@ -297,3 +297,9 @@ console.log("array loaded");
     }
   });
 };
+
+Template.stats.helpers({
+  pcount: function () {
+    return points_5k.find( { user: Meteor.userID() }).count();
+  }
+});

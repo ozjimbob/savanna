@@ -48,7 +48,7 @@ overflow: scroll;
 z-index:20000;
 box-shadow: 5px 5px 10px #888888;}
 
-#stats-modal {display:none;position:absolute; margin-left: 150px; width:900px; height: 600px;
+#stats-modal {display:none;position:absolute; margin-left: 150px; width:1000px; height: 600px;
   padding: 5px;
 border: 1px solid #000;
 background-color: #ffffff;
