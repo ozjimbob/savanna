@@ -1,6 +1,5 @@
 
 
-
 VegList = new Mongo.Collection('Veg');
 points_5k = new Mongo.Collection('p5k');
 ClassPoints = new Mongo.Collection("Class5k");
@@ -10,7 +9,12 @@ function random (low, high) {
 };
 
 if (Meteor.isClient) {
-
+  
+  Template.stats.helpers({
+    pcount: function () {
+      return points_5k.find( { user: Meteor.userID() }).count();
+    }
+  });
   // counter starts at 0
   Meteor.subscribe("Veg")
   Session.setDefault('id',0);
@@ -297,9 +301,3 @@ console.log("array loaded");
     }
   });
 };
-
-Template.stats.helpers({
-  pcount: function () {
-    return points_5k.find( { user: Meteor.userID() }).count();
-  }
-});
