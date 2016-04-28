@@ -10,11 +10,26 @@ function random (low, high) {
 
 if (Meteor.isClient) {
 
-  Template.stats.helpers({
-    pcount: function () {
-      return points_5k.find( { user: Meteor.userId() }).count();
+
+  Meteor.call("countup",function(error,ptcs){
+    if(error){
+        console.log("Error occuring:",error);
+        Session.set('ptct', " no ");
+      }else{
+        console.log(ptcs);
+        Session.set('ptct', ptcs);
+      }
     }
-  });
+);
+
+  Template.stats.helpers({
+
+    pcount: function () {
+      return(Session.get('ptct'));
+      }
+
+    })
+
   // counter starts at 0
   Meteor.subscribe("Veg")
   Session.setDefault('id',0);
@@ -33,6 +48,7 @@ if (Meteor.isClient) {
       console.log("You clicked" + this.name);
       console.log("logging");
       Meteor.call("insertClass",Session.get("id"),Session.get("lat"),Session.get("lon"),this.code);
+
       console.log("animating");
      // $(this).fadeOut( 400 ).delay(200).fadeIn(400);
      //var self=this;
@@ -41,6 +57,8 @@ if (Meteor.isClient) {
      console.log("removing layer");
       map.removeLayer(map.circ);
      console.log("calling meteor");
+
+
       Meteor.call("getLoc",function(error,get_coords){
         if(error){
           console.log("Error occuring:",error)
@@ -49,6 +67,7 @@ if (Meteor.isClient) {
         Session.set('id',get_coords.id);
         Session.set('lat', get_coords.lat);
         Session.set('lon', get_coords.lon);
+
         console.log(Session.get('id'))
         var newLat=Session.get('lat');
         var newLng=Session.get('lon');
@@ -61,6 +80,23 @@ if (Meteor.isClient) {
         }).addTo(map);
       }
       });
+
+
+      Meteor.call("countup",function(error,ptcs){
+        if(error){
+            console.log("Error occuring:",error);
+            Session.set('ptct', " no ");
+          }else{
+            console.log(ptcs);
+            Session.set('ptct', ptcs);
+          }
+        }
+    );
+
+    console.log("returned")
+    console.log(ppcount)
+    return(ppcount)
+
 
 
     }
@@ -298,6 +334,12 @@ console.log("array loaded");
         at: new Date(),
         user: Meteor.userId()
       })
-    }
-  });
+    },
+
+  countup: function(){
+    return ClassPoints.find( { user: Meteor.userId() }).count();
+  }
+}
+
+);
 };
