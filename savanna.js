@@ -140,6 +140,8 @@ var baseMaps = {
     "Bing": tbing
 };
 L.control.layers(baseMaps,{},{collapsed:false}).addTo(map);
+L.control.zoom({ position:'topleft'}).addTo(map);
+
 L.control.scale().addTo(map);
 
     var MapIcon = L.Icon.extend({
