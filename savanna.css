@@ -15,8 +15,6 @@ margin-left:310px;
 
 #loginButtons{
 	width:100%;
-  border-top: 1px solid #999999;
-  border-bottom: 1px solid #999999;
 	background-color: #ffffff;
   padding-left:10px;
 }
@@ -111,16 +109,19 @@ table, th, td {
 a:link {
     color: #330000;
     font-weight:bold;
+    text-decoration: none;
 }
 
 /* visited link */
 a:visited {
     color: #330000;
     font-weight:bold;
+    text-decoration: none;
 }
 
 /* mouse over link */
 a:hover {
     color: #ff0000;
     font-weight:bold;
+    text-decoration: none;
 }
