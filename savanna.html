@@ -32,7 +32,10 @@
 <div class="button"><img src="{{thumb}}" /><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div>
 {{/each}}
   {{else}}
-  <div class="button">Please login with Facebook to classify images</div>
+  <div class="bigbutton">Please login with Facebook to classify images, using the button above.  We will not post to your timeline.</div>
+  {{#each vegTypes}}
+  <div class="dullbutton"><img src="{{thumb}}" /><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div>
+  {{/each}}
   {{/if}}
 </div>
 </template>
