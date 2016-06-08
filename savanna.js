@@ -10,6 +10,9 @@ function random (low, high) {
 
 if (Meteor.isClient) {
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
   Meteor.call("countup",function(error,ptcs){
     if(error){
