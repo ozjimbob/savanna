@@ -6,9 +6,17 @@ background-color:#ffffff;
 #allcontent{
   width: 100%;
 }
+
+#map-container{
+  height: 500px;
+  width: 100%;
+}
+
 #map{border: 1px black solid;
-height: 500px;
+height: 100%;
 margin-top: 2px;
+width: 100%;
+
 }
 
 #loginButtons{
@@ -22,12 +30,7 @@ margin-top: 2px;
   font-size: 36pt;
 }
 
-#sideButtonBar{
-  position:relative;
-	float:left;
-	width:300px;
-	display:inline;
-}
+
 
 #basic-modal-content {display:none;position:absolute; margin-left: 150px; width:500px;  height: 600px;
 padding:5px;
@@ -53,60 +56,32 @@ overflow: scroll;
 z-index:20000;
 box-shadow: 5px 5px 10px #888888;}
 
-#footer{
-  width:70%;
-  float:left;
-  line-height: 110%;
-  paddin-left:5px;
-}
 
 .button{
 	border-radius: 4px;
-	width: 126px;
-	height: 180px;
 	/*border: 1px solid black;*/
 	background-color: #fcf9a6;
-  line-height: 90%;
+   height: 180px;
     text-align: center;
-    display: inline-table;
-    margin: 2px 2px 2px 2px;
+    margin: 5px 5px 5px 5px;
     padding: 2px 2px 2px 2px;
     cursor:pointer;
+    line-height:90%;
 }
 
 .dullbutton{
   opacity: 0.6;
 	border-radius: 4px;
-	width: 126px;
-	height: 180px;
 	/*border: 1px solid black;*/
 	background-color: #fcf9a6;
-  line-height: 90%;
+   height: 180px;
     text-align: center;
-    display: inline-table;
-    margin: 2px 2px 2px 2px;
+    margin: 5px 5px 5px 5px;
     padding: 2px 2px 2px 2px;
     cursor:pointer;
+    line-height:90%;
 }
 
-.bigbutton{
-  position:absolute;
-  opacity: 1.0;
-  top:15px;
-  left:40px;
-  border-radius: 4px;
-	width: 200px;
-	height: 520px;
-	border: 2px solid black;
-	background-color: #eeeeee;
-  line-height: 90%;
-    text-align: center;
-    display: inline-table;
-    margin: 2px 2px 2px 2px;
-    padding: 22px 2px 2px 2px;
-    cursor:pointer;
-    z-index:100;
-}
 
 .button:hover{
   background-color: #4ea07a;

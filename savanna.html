@@ -16,10 +16,10 @@
     </div>
   </div>
 <div class="row">
-  <div class="col-md-3 col-sm-12">
+  <div class="col-md-3 col-sm-12 col-xs-12">
 {{> sideButtons}}
 </div>
-<div class="col-md-9 col-sm-12">
+<div class="col-md-9 col-sm-12 col-xs-12">
 {{> satmap}}
 </div>
 </div>
@@ -34,7 +34,7 @@
 </body>
 
 <template name="satmap">
-<div id="map"></div>
+<div id="map-container"><div id="map"></div></div>
 
 
 </template>
@@ -43,12 +43,12 @@
 <div class="row">
   {{#if currentUser}}
 {{#each vegTypes}}
-<div class="col-md-6 col-sm-2">
-<div class="button"><img src="{{thumb}}" /><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div></div>
+<div class="col-md-6 col-xs-2">
+<div class="button"><img src="{{thumb}}" class="img-responsive" /><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div></div>
 {{/each}}
   {{else}}
   {{#each vegTypes}}
-  <div class="col-md-6 col-sm-2"><div class="dullbutton"><img src="{{thumb}}" title="Please log in using Facebook to start classifying!"/><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div></div>
+  <div class="col-md-6 col-sm-2 col-xs-2"><div class="dullbutton"><img src="{{thumb}}" class="img-responsive" title="Please log in using Facebook to start classifying!"/><div class="lgtxt">{{name}}</div><div class="smtxt">{{desc}}</div></div></div>
   {{/each}}
   {{/if}}
 </div>
