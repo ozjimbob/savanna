@@ -9,8 +9,6 @@ background-color:#ffffff;
 #map{border: 1px black solid;
 height: 500px;
 margin-top: 2px;
-position:relative;
-margin-left:310px;
 }
 
 #loginButtons{
