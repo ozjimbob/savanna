@@ -118,6 +118,7 @@ box-shadow: 5px 5px 10px #888888;}
 }
 
 .lgtxt{
+  padding-top: 5px;
 	font-weight: bold;
   font-family: 'Martel Sans', sans-serif;
 }
